@@ -88,3 +88,22 @@ $role = $_SESSION['role'];
                     </div>
                 </div>
             </div>
+
+            <?php elseif($role === 'teacher'): ?>
+            <!-- Teacher Dashboard -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <i class="fas fa-book text-5xl text-blue-500 mb-4"></i>
+                        <h2 class="text-xl font-semibold mb-4">My Courses</h2>
+                        <a href="../teacher/courses.php" class="text-blue-500 hover:text-blue-700">View My Courses →</a>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <i class="fas fa-plus-circle text-5xl text-green-500 mb-4"></i>
+                        <h2 class="text-xl font-semibold mb-4">Create New Course</h2>
+                        <a href="../teacher/create-course.php" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Create Course</a>
+                    </div>
+                </div>
+            </div>
