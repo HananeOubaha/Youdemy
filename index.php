@@ -99,3 +99,20 @@ if ($search) {
             </div>
         </div>
     </div>
+<!-- Courses Section -->
+<div id="courses" class="max-w-7xl mx-auto px-4 py-16">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Explore Our Courses</h2>
+            <p class="text-gray-600">Discover the perfect course to advance your skills</p>
+        </div>
+
+        <!-- Search Form -->
+        <form action="index.php" method="GET" class="mb-8">
+            <div class="flex gap-4">
+                <input type="text" name="search" placeholder="Search for courses..." value="<?php echo htmlspecialchars($search); ?>"
+                       class="flex-grow shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300">
+                    Search
+                </button>
+            </div>
+        </form>
