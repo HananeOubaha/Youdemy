@@ -116,3 +116,25 @@ if ($search) {
                 </button>
             </div>
         </form>
+
+        <!-- Category Buttons -->
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4">Categories</h3>
+            <div class="flex flex-wrap gap-2">
+                <a href="index.php" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition duration-300">
+                    All Courses
+                </a>
+                <?php foreach ($categories as $cat): ?>
+                    <a href="index.php?category=<?php echo urlencode($cat['id']); ?>" 
+                       class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 <?php echo $category == $cat['id'] ? 'bg-blue-600 text-white' : ''; ?>">
+                        <?php echo htmlspecialchars($cat['name']); ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <?php if (empty($courses)): ?>
+            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-8" role="alert">
+                <p>No courses found. Try a different search term or category.</p>
+            </div>
+        <?php endif; ?>
