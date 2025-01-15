@@ -76,3 +76,26 @@ if ($search) {
             </div>
         </div>
     </div>
+     <!-- Features Section -->
+     <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Choose Youdemy?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <i class="fas fa-laptop-code text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Expert Instructors</h3>
+                    <p class="text-gray-600">Learn from industry professionals with years of experience.</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-clock text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Learn at Your Pace</h3>
+                    <p class="text-gray-600">Access course content 24/7 and learn on your schedule.</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-certificate text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Certificates</h3>
+                    <p class="text-gray-600">Earn certificates upon completion to showcase your skills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
