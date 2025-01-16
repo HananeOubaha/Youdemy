@@ -38,3 +38,16 @@ $stmt = $db->prepare($query);
 $stmt->bindParam(":course_id", $course_id);
 $stmt->execute();
 $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Handle enrollment
+$error = '';
+$success = '';
+if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_POST['enroll'])) {
+    $student = new Student($db);
+    if ($student->enrollCourse($_SESSION['user_id'], $course_id)) {
+        $success = 'Successfully enrolled in the course!';
+    } else {
+        $error = 'You are already enrolled in this course.';
+    }
+}
+?> 
