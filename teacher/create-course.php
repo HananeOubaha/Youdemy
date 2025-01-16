@@ -192,3 +192,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
+
+        <!-- Script pour afficher/masquer les champs en fonction du type de contenu -->
+        <script>
+        document.getElementById('content_type').addEventListener('change', function() {
+            const textContentField = document.getElementById('text_content_field');
+            const videoContentField = document.getElementById('video_content_field');
+
+            if (this.value === 'text') {
+                textContentField.classList.remove('hidden');
+                videoContentField.classList.add('hidden');
+            } else if (this.value === 'video') {
+                textContentField.classList.add('hidden');
+                videoContentField.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
