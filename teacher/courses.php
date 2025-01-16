@@ -111,3 +111,16 @@ $courses = $teacher->getMyCourses($_SESSION['user_id']);
             </div>
         <?php endif; ?>
     </div>
+     <!-- JavaScript for Delete Confirmation -->
+     <script>
+        function confirmDelete(courseId) {
+            if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
+                window.location.href = 'delete-course.php?id=' + courseId;
+            }
+        }
+    </script>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
