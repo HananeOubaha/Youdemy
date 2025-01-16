@@ -150,3 +150,63 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
                     </div>
                 </div>
             </div>
+<!-- Sidebar -->
+<div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-24">
+                    <div class="p-6">
+                        <div class="mb-6">
+                            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Course Preview" class="w-full rounded-lg">
+                        </div>
+                        
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <?php if ($_SESSION['role'] === 'student'): ?>
+                                <form method="POST" action="" class="mb-4">
+                                    <button type="submit" name="enroll" 
+                                            class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                                        <i class="fas fa-graduation-cap mr-2"></i>
+                                        Enroll in Course
+                                    </button>
+                                </form>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <p class="text-gray-600 mb-4">Please login as a student to enroll in this course.</p>
+                                <a href="login.php" 
+                                   class="block w-full bg-blue-600 text-white text-center px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                                    Login to Enroll
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
+                        <!-- Course Features -->
+                        <div class="mt-6">
+                            <h3 class="text-lg font-semibold mb-4">Course Features</h3>
+                            <ul class="space-y-3 text-gray-600">
+                                <li class="flex items-center">
+                                    <i class="fas fa-clock mr-3 text-blue-600"></i>
+                                    <span>Self-paced learning</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-certificate mr-3 text-blue-600"></i>
+                                    <span>Certificate of completion</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-infinity mr-3 text-blue-600"></i>
+                                    <span>Full lifetime access</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-mobile-alt mr-3 text-blue-600"></i>
+                                    <span>Access on mobile and TV</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
