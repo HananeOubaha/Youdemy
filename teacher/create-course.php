@@ -89,3 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </nav>
+<!-- Contenu principal -->
+<div class="max-w-4xl mx-auto px-4">
+        <!-- En-tête de la page -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Create New Course</h1>
+            <p class="text-gray-600">Fill out the form below to create a new course and share your knowledge with the world.</p>
+        </div>
