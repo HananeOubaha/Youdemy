@@ -30,3 +30,11 @@ if (!$course) {
     header('Location: index.php');
     exit;
 }
+// Get course tags
+$query = "SELECT t.name FROM tags t 
+         JOIN course_tags ct ON t.id = ct.tag_id 
+         WHERE ct.course_id = :course_id";
+$stmt = $db->prepare($query);
+$stmt->bindParam(":course_id", $course_id);
+$stmt->execute();
+$tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
