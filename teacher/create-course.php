@@ -96,3 +96,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h1 class="text-4xl font-bold text-gray-800 mb-2">Create New Course</h1>
             <p class="text-gray-600">Fill out the form below to create a new course and share your knowledge with the world.</p>
         </div>
+        <!-- Formulaire de création de cours -->
+        <form method="POST" action="" enctype="multipart/form-data" class="relative bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-2xl p-8 transform transition-all duration-300 hover:shadow-xl">
+            <!-- Animation de fond -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 opacity-75 rounded-lg animate-pulse"></div>
+            <div class="relative z-10">
+                <!-- Titre du cours -->
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2" for="title">
+                        <i class="fas fa-book mr-2"></i>Course Title
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           id="title" type="text" name="title" required placeholder="Enter course title">
+                </div>
+
+                <!-- Description du cours -->
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2" for="description">
+                        <i class="fas fa-align-left mr-2"></i>Description
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              id="description" name="description" rows="4" required placeholder="Enter course description"></textarea>
+                </div>
+
+                <!-- Type de contenu -->
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2" for="content_type">
+                        <i class="fas fa-file-alt mr-2"></i>Content Type
+                    </label>
+                    <select class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            id="content_type" name="content_type" required>
+                        <option value="">Select content type</option>
+                        <option value="text">Text</option>
+                        <option value="video">Video</option>
+                    </select>
+                </div>
+
+                <!-- Contenu du cours (texte) -->
+                <div class="mb-6" id="text_content_field">
+                    <label class="block text-white text-sm font-bold mb-2" for="content">
+                        <i class="fas fa-file-alt mr-2"></i>Course Content (Text)
+                    </label>
+                    <textarea class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              id="content" name="content" rows="10" placeholder="Enter course content"></textarea>
+                </div>
+
+                <!-- Contenu du cours (vidéo) -->
+                <div class="mb-6 hidden" id="video_content_field">
+                    <label class="block text-white text-sm font-bold mb-2" for="video_file">
+                        <i class="fas fa-video mr-2"></i>Course Content (Video)
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           id="video_file" type="file" name="video_file" accept="video/*">
+                </div>
+
+                <!-- Catégorie du cours -->
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2" for="category">
+                        <i class="fas fa-tag mr-2"></i>Category
+                    </label>
+                    <select class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            id="category" name="category_id" required>
+                        <option value="">Select a category</option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?php echo $category['id']; ?>">
+                                <?php echo htmlspecialchars($category['name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Tags du cours -->
+                <div class="mb-6">
+                    <label class="block text-white text-sm font-bold mb-2">
+                        <i class="fas fa-tags mr-2"></i>Tags
+                    </label>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <?php foreach ($tags as $tag): ?>
+                            <label class="inline-flex items-center bg-white bg-opacity-20 p-3 rounded-lg hover:bg-opacity-30 transition duration-200">
+                                <input type="checkbox" name="tags[]" value="<?php echo $tag['id']; ?>"
+                                       class="form-checkbox h-5 w-5 text-blue-600">
+                                <span class="ml-3 text-white"><?php echo htmlspecialchars($tag['name']); ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- Bouton de soumission -->
+                <div class="flex items-center justify-center">
+                    <button class="bg-white text-blue-500 font-bold py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 transform hover:scale-105"
+                            type="submit">
+                        <i class="fas fa-plus mr-2"></i>Create Course
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
