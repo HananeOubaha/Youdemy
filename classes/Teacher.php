@@ -1,11 +1,12 @@
 <?php
-class Teacher extends User {
+class Teacher {
     private $db;
 
     public function __construct($db) {
         $this->db = $db;
     }
 
+    // Fonctionnalité existante : Récupérer les cours de l'enseignant
     public function getMyCourses($teacher_id) {
         $query = "SELECT c.*, COUNT(e.id) as student_count 
                  FROM courses c 
@@ -18,54 +19,20 @@ class Teacher extends User {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function createCourse($title, $description, $content, $teacher_id, $category_id, $tags) {
-        try {
-            $this->db->beginTransaction();
-
-            // Insert course
-            $query = "INSERT INTO courses (title, description, content, teacher_id, category_id) 
-                     VALUES (:title, :description, :content, :teacher_id, :category_id)";
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(":title", $title);
-            $stmt->bindParam(":description", $description);
-            $stmt->bindParam(":content", $content);
-            $stmt->bindParam(":teacher_id", $teacher_id);
-            $stmt->bindParam(":category_id", $category_id);
-            $stmt->execute();
-
-            $course_id = $this->db->lastInsertId();
-
-            // Add tags
-            if (!empty($tags)) {
-                foreach ($tags as $tag_id) {
-                    $query = "INSERT INTO course_tags (course_id, tag_id) VALUES (:course_id, :tag_id)";
-                    $stmt = $this->db->prepare($query);
-                    $stmt->bindParam(":course_id", $course_id);
-                    $stmt->bindParam(":tag_id", $tag_id);
-                    $stmt->execute();
-                }
-            }
-
-            $this->db->commit();
-            return true;
-        } catch (Exception $e) {
-            $this->db->rollBack();
-            return false;
-        }
-    }
-
-    public function updateCourse($course_id, $title, $description, $content, $category_id, $tags) {
+    // Fonctionnalité existante : Mettre à jour un cours
+    public function updateCourse($course_id, $title, $description, $content, $content_type, $category_id, $tags) {
         try {
             $this->db->beginTransaction();
 
             // Update course
             $query = "UPDATE courses 
-                     SET title = :title, description = :description, content = :content, category_id = :category_id 
+                     SET title = :title, description = :description, content = :content, content_type = :content_type, category_id = :category_id 
                      WHERE id = :course_id";
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(":title", $title);
             $stmt->bindParam(":description", $description);
             $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":content_type", $content_type);
             $stmt->bindParam(":category_id", $category_id);
             $stmt->bindParam(":course_id", $course_id);
             $stmt->execute();
@@ -91,10 +58,13 @@ class Teacher extends User {
             return true;
         } catch (Exception $e) {
             $this->db->rollBack();
+            // Log the error for debugging
+            error_log("Failed to update course: " . $e->getMessage());
             return false;
         }
     }
 
+    // Fonctionnalité existante : Supprimer un cours
     public function deleteCourse($course_id) {
         try {
             $this->db->beginTransaction();
@@ -119,6 +89,7 @@ class Teacher extends User {
         }
     }
 
+    // Fonctionnalité existante : Récupérer les étudiants d'un cours
     public function getCourseStudents($course_id, $teacher_id) {
         $query = "SELECT u.username, u.email, e.enrolled_at 
                  FROM enrollments e 
@@ -131,6 +102,43 @@ class Teacher extends User {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Nouvelle fonctionnalité : Créer un cours avec type de contenu (texte ou vidéo)
+    public function createCourse($title, $description, $content, $content_type, $teacher_id, $category_id, $tags) {
+        try {
+            $this->db->beginTransaction();
+
+            // Insert course
+            $query = "INSERT INTO courses (title, description, content, content_type, teacher_id, category_id) 
+                     VALUES (:title, :description, :content, :content_type, :teacher_id, :category_id)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":title", $title);
+            $stmt->bindParam(":description", $description);
+            $stmt->bindParam(":content", $content);
+            $stmt->bindParam(":content_type", $content_type);
+            $stmt->bindParam(":teacher_id", $teacher_id);
+            $stmt->bindParam(":category_id", $category_id);
+            $stmt->execute();
+
+            $course_id = $this->db->lastInsertId();
+
+            // Add tags
+            if (!empty($tags)) {
+                foreach ($tags as $tag_id) {
+                    $query = "INSERT INTO course_tags (course_id, tag_id) VALUES (:course_id, :tag_id)";
+                    $stmt = $this->db->prepare($query);
+                    $stmt->bindParam(":course_id", $course_id);
+                    $stmt->bindParam(":tag_id", $tag_id);
+                    $stmt->execute();
+                }
+            }
+
+            $this->db->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            return false;
+        }
+    }
 }
 ?>
-
