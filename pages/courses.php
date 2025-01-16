@@ -104,3 +104,63 @@ if ($search) {
                 </div>
             </div>
         </div>
+        <!-- No Results Message -->
+        <?php if (empty($courses)): ?>
+            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-6 rounded-lg mb-8" role="alert">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle mr-3"></i>
+                    <p>No courses found. Try a different search term or category.</p>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <!-- Course Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php foreach($courses as $course): ?>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="<?php echo htmlspecialchars($course['title']); ?>" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h2 class="text-xl font-semibold mb-2"><?php echo htmlspecialchars($course['title']); ?></h2>
+                        <p class="text-gray-600 mb-4"><?php echo htmlspecialchars(substr($course['description'], 0, 100)) . '...'; ?></p>
+                        <div class="flex flex-col space-y-3">
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-user-tie mr-2 text-blue-600"></i>
+                                <span>By <?php echo htmlspecialchars($course['teacher_name']); ?></span>
+                            </div>
+                            <div class="flex items-center text-gray-500">
+                                <i class="fas fa-folder mr-2 text-blue-600"></i>
+                                <span><?php echo htmlspecialchars($course['category_name']); ?></span>
+                            </div>
+                            <a href="course.php?id=<?php echo $course['id']; ?>" 
+                               class="bg-blue-600 text-white text-center px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                View Course Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Pagination -->
+        <?php if (!$search && !$category): ?>
+            <div class="mt-8 flex justify-center space-x-4">
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1; ?>" 
+                       class="flex items-center px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition duration-300">
+                        <i class="fas fa-chevron-left mr-2"></i>
+                        Previous
+                    </a>
+                <?php endif; ?>
+                <a href="?page=<?php echo $page + 1; ?>" 
+                   class="flex items-center px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition duration-300">
+                    Next
+                    <i class="fas fa-chevron-right ml-2"></i>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
