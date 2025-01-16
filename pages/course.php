@@ -111,3 +111,42 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
             </div>
         </div>
     </div>
+        <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Course Content -->
+            <div class="lg:col-span-2">
+                <?php if($error): ?>
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+                        <p class="font-bold">Error</p>
+                        <p><?php echo htmlspecialchars($error); ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <?php if($success): ?>
+                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
+                        <p class="font-bold">Success</p>
+                        <p><?php echo htmlspecialchars($success); ?></p>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Course Description -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">About This Course</h2>
+                        <div class="prose max-w-none text-gray-600">
+                            <?php echo nl2br(htmlspecialchars($course['description'])); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Content -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Course Content</h2>
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <?php echo nl2br(htmlspecialchars($course['content'])); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
