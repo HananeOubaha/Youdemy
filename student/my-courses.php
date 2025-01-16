@@ -62,3 +62,43 @@ $courses = $student->getEnrolledCourses($_SESSION['user_id']);
             <h1 class="text-4xl font-bold text-gray-800 mb-2">My Enrolled Courses</h1>
             <p class="text-gray-600">Continue your learning journey with these amazing courses.</p>
         </div>
+        <!-- No Courses Message -->
+        <?php if (empty($courses)): ?>
+            <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                <i class="fas fa-book-open fa-3x text-gray-400 mb-4"></i>
+                <p class="text-gray-600 text-xl mb-4">You haven't enrolled in any courses yet.</p>
+                <a href="../pages/courses.php" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+                    Browse Available Courses
+                </a>
+            </div>
+        <?php else: ?>
+            <!-- Course Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php foreach($courses as $course): ?>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <!-- Course Image -->
+                        <div class="h-48 bg-cover bg-center relative" style="background-image: url('<?php echo htmlspecialchars($course['image_url'] ?? 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); ?>');">
+                            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                                <span class="text-white text-lg font-semibold"><?php echo htmlspecialchars($course['category_name']); ?></span>
+                            </div>
+                        </div>
+                        <!-- Course Details -->
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold mb-2 text-gray-800"><?php echo htmlspecialchars($course['title']); ?></h2>
+                            <p class="text-gray-600 mb-4"><?php echo htmlspecialchars(substr($course['description'], 0, 150)) . '...'; ?></p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm text-gray-500">By <?php echo htmlspecialchars($course['teacher_name']); ?></span>
+                                    <span class="text-sm text-gray-500 block">Progress: <span class="font-semibold"><?php echo rand(0, 100); ?>%</span></span>
+                                </div>
+                                <a href="../pages/course.php?id=<?php echo $course['id']; ?>" 
+                                   class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
+                                    Continue Learning
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
