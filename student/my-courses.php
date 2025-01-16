@@ -102,3 +102,23 @@ $courses = $student->getEnrolledCourses($_SESSION['user_id']);
             </div>
         <?php endif; ?>
     </div>
+    <!-- JavaScript for Dropdown -->
+    <script>
+        const categoryDropdown = document.getElementById('categoryDropdown');
+        const categoryMenu = document.getElementById('categoryMenu');
+
+        categoryDropdown.addEventListener('click', () => {
+            categoryMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!categoryDropdown.contains(e.target)) {
+                categoryMenu.classList.add('hidden');
+            }
+        });
+    </script>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
