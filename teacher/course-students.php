@@ -74,3 +74,44 @@ $students = $teacher->getCourseStudents($course_id, $_SESSION['user_id']);
                 <p class="text-gray-600 text-xl mb-4">No students enrolled in this course yet.</p>
             </div>
         <?php else: ?>
+             <!-- Students Table -->
+             <div class="bg-white shadow-md rounded-lg overflow-hidden transform transition-all duration-300 hover:shadow-lg">
+                <table class="min-w-full">
+                    <thead class="bg-gradient-to-r from-blue-500 to-purple-600">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                <i class="fas fa-user mr-2"></i>Username
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                <i class="fas fa-envelope mr-2"></i>Email
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                                <i class="fas fa-calendar-alt mr-2"></i>Enrolled Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <?php foreach ($students as $student): ?>
+                            <tr class="hover:bg-gray-50 transition duration-200">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                             alt="User Avatar" 
+                                             class="h-10 w-10 rounded-full mr-3">
+                                        <span class="text-gray-900 font-medium"><?php echo htmlspecialchars($student['username']); ?></span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600"><?php echo htmlspecialchars($student['email']); ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-600"><?php echo date('M j, Y', strtotime($student['enrolled_at'])); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
