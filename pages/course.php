@@ -30,6 +30,7 @@ if (!$course) {
     header('Location: index.php');
     exit;
 }
+
 // Get course tags
 $query = "SELECT t.name FROM tags t 
          JOIN course_tags ct ON t.id = ct.tag_id 
@@ -50,7 +51,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
         $error = 'You are already enrolled in this course.';
     }
 }
-?> 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +85,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
             </div>
         </div>
     </nav>
-    
+
     <!-- Course Header -->
     <div class="pt-16 bg-gradient-to-r from-indigo-800 to-purple-800 to-blue-800 text-white">
         <div class="max-w-7xl mx-auto px-4 py-12">
@@ -111,7 +113,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
             </div>
         </div>
     </div>
-        <!-- Main Content -->
+
+    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Course Content -->
@@ -145,13 +148,23 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
                     <div class="p-6">
                         <h2 class="text-2xl font-bold text-gray-800 mb-4">Course Content</h2>
                         <div class="bg-gray-50 rounded-lg p-6">
-                            <?php echo nl2br(htmlspecialchars($course['content'])); ?>
+                            <?php if ($course['content_type'] === 'video'): ?>
+                                <!-- Afficher la vidéo -->
+                                <video controls width="100%" class="rounded-lg">
+                                    <source src="<?php echo htmlspecialchars($course['content']); ?>" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            <?php else: ?>
+                                <!-- Afficher le contenu texte -->
+                                <?php echo nl2br(htmlspecialchars($course['content'])); ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
-<!-- Sidebar -->
-<div class="lg:col-span-1">
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
                 <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-24">
                     <div class="p-6">
                         <div class="mb-6">
@@ -205,7 +218,8 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
             </div>
         </div>
     </div>
- <?php
+
+    <?php
     require_once '../pages/footer.php';
     ?>
 </body>
