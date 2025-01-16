@@ -18,3 +18,20 @@ if (!$course_id) {
     header('Location: courses.php');
     exit;
 }
+
+// Get course details
+$stmt = $db->prepare("SELECT title FROM courses WHERE id = :course_id AND teacher_id = :teacher_id");
+$stmt->execute([
+    'course_id' => $course_id,
+    'teacher_id' => $_SESSION['user_id']
+]);
+$course = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$course) {
+    header('Location: courses.php');
+    exit;
+}
+
+// Get enrolled students
+$students = $teacher->getCourseStudents($course_id, $_SESSION['user_id']);
+?>
