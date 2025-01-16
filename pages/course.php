@@ -83,3 +83,31 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student' && isset($_PO
             </div>
         </div>
     </nav>
+    
+    <!-- Course Header -->
+    <div class="pt-16 bg-gradient-to-r from-indigo-800 to-purple-800 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl font-bold mb-4"><?php echo htmlspecialchars($course['title']); ?></h1>
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-tie mr-2"></i>
+                        <span>By <?php echo htmlspecialchars($course['teacher_name']); ?></span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-folder mr-2"></i>
+                        <span><?php echo htmlspecialchars($course['category_name']); ?></span>
+                    </div>
+                </div>
+                <?php if (!empty($tags)): ?>
+                    <div class="flex flex-wrap gap-2">
+                        <?php foreach ($tags as $tag): ?>
+                            <span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+                                <?php echo htmlspecialchars($tag['name']); ?>
+                            </span>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
