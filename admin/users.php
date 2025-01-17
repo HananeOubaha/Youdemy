@@ -92,3 +92,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">   
+                                <!-- Toggle Status Button -->
+                                <form method="POST" class="inline-block">
+                                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                    <button type="submit" name="toggle_status" class="text-sm text-blue-500 hover:text-blue-700 mr-2">
+                                        <i class="fas fa-power-off"></i> <?php echo $user['is_active'] ? 'Deactivate' : 'Activate'; ?>
+                                    </button>
+                                </form>
+
+                                <!-- Verify Teacher Button -->
+                                <?php if ($user['role'] === 'teacher' && !$user['is_verified']): ?>
+                                    <form method="POST" class="inline-block mr-2">
+                                        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                                        <button type="submit" name="verify_teacher" class="text-sm text-green-500 hover:text-green-700">
+                                            <i class="fas fa-check-circle"></i> Verify Teacher
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
+
+                                <!-- Delete Button -->
+                                <button onclick="confirmDelete(<?php echo $user['id']; ?>)" class="text-sm text-red-500 hover:text-red-700">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
