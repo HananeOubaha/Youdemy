@@ -39,3 +39,14 @@ $stmt = $db->prepare("
 ");
 $stmt->execute(['teacher_id' => $_SESSION['user_id']]);
 $most_popular = $stmt->fetch(PDO::FETCH_ASSOC);
+// Get courses by category
+$stmt = $db->prepare("
+    SELECT cat.name, COUNT(c.id) as count 
+    FROM categories cat 
+    LEFT JOIN courses c ON cat.id = c.category_id 
+    WHERE c.teacher_id = :teacher_id 
+    GROUP BY cat.id
+");
+$stmt->execute(['teacher_id' => $_SESSION['user_id']]);
+$courses_by_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
