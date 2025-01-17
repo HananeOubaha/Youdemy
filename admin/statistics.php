@@ -42,3 +42,15 @@ $stats = $admin->getStatistics();
     <!-- Main Content -->
     <div class="max-w-6xl mx-auto px-4">
         <h1 class="text-3xl font-bold text-gray-800 mb-8">Platform Statistics</h1>
+         <!-- Statistics Grid -->
+         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Total Courses -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Total Courses</h2>
+                        <p class="text-3xl font-bold"><?php echo $stats['total_courses']; ?></p>
+                    </div>
+                    <i class="fas fa-book-open text-4xl opacity-50"></i>
+                </div>
+            </div>
