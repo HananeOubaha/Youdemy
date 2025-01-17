@@ -92,4 +92,26 @@ $tags = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php echo htmlspecialchars($success); ?>
             </div>
         <?php endif; ?>
-        
+
+         <!-- Add Multiple Tags Form -->
+         <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-lg shadow-lg text-white mb-8 transform transition-all duration-300 hover:shadow-xl">
+            <h2 class="text-xl font-semibold mb-4"><i class="fas fa-tags mr-2"></i>Add Multiple Tags</h2>
+            <form method="POST" action="">
+                <div class="mb-4">
+                    <label class="block text-sm font-bold mb-2" for="tags">
+                        Enter tags (comma-separated)
+                    </label>
+                    <textarea
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="tags"
+                        name="tags"
+                        rows="3"
+                        placeholder="web development, javascript, react"
+                        required
+                    ></textarea>
+                </div>
+                <button type="submit" class="bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition duration-300">
+                    <i class="fas fa-plus-circle mr-2"></i>Add Tags
+                </button>
+            </form>
+        </div>
