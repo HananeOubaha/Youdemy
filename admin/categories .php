@@ -101,3 +101,27 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </button>
             </form>
         </div>
+     
+         <!-- Existing Categories List -->
+         <div class="bg-white shadow-md rounded-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl">
+            <h2 class="text-xl font-semibold p-6 border-b"><i class="fas fa-list-alt mr-2"></i>Existing Categories</h2>
+            <div class="p-6">
+                <ul class="space-y-2">
+                    <?php foreach ($categories as $category): ?>
+                        <li class="flex justify-between items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
+                            <span class="text-gray-700 font-medium"><?php echo htmlspecialchars($category['name']); ?></span>
+                            <a href="?delete_id=<?php echo $category['id']; ?>" 
+                               class="text-red-500 hover:text-red-700 transition duration-300">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
