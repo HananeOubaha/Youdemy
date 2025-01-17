@@ -27,3 +27,15 @@ $stmt = $db->prepare("
 ");
 $stmt->execute(['teacher_id' => $_SESSION['user_id']]);
 $total_students = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+// Get most popular course
+$stmt = $db->prepare("
+    SELECT c.title, COUNT(e.id) as enrollments 
+    FROM courses c 
+    LEFT JOIN enrollments e ON c.id = e.course_id 
+    WHERE c.teacher_id = :teacher_id 
+    GROUP BY c.id 
+    ORDER BY enrollments DESC 
+    LIMIT 1
+");
+$stmt->execute(['teacher_id' => $_SESSION['user_id']]);
+$most_popular = $stmt->fetch(PDO::FETCH_ASSOC);
