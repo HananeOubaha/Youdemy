@@ -91,3 +91,37 @@ $stats = $admin->getStatistics();
                 </div>
             </div>
         </div>
+        <!-- Courses by Category Details -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Courses by Category</h2>
+            <div class="space-y-4">
+                <?php foreach ($stats['courses_by_category'] as $category): ?>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
+                        <span class="text-gray-700 font-medium"><?php echo htmlspecialchars($category['name']); ?></span>
+                        <span class="text-gray-600"><?php echo $category['count']; ?> courses</span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <!-- Top Teachers Details -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Top Teachers</h2>
+            <div class="space-y-4">
+                <?php foreach ($stats['top_teachers'] as $index => $teacher): ?>
+                    <div class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
+                        <span class="text-lg font-bold mr-4">#<?php echo $index + 1; ?></span>
+                        <div>
+                            <p class="font-medium"><?php echo htmlspecialchars($teacher['username']); ?></p>
+                            <p class="text-sm text-gray-600"><?php echo $teacher['course_count']; ?> courses</p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
