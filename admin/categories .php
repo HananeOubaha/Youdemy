@@ -84,3 +84,5 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php echo htmlspecialchars($success); ?>
             </div>
         <?php endif; ?>
+
+        
