@@ -264,3 +264,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
     </div>
+
+     <!-- JavaScript to toggle content fields -->
+     <script>
+        document.getElementById('content_type').addEventListener('change', function() {
+            const textContentField = document.getElementById('text_content_field');
+            const videoContentField = document.getElementById('video_content_field');
+
+            if (this.value === 'text') {
+                textContentField.classList.remove('hidden');
+                videoContentField.classList.add('hidden');
+            } else if (this.value === 'video') {
+                textContentField.classList.add('hidden');
+                videoContentField.classList.remove('hidden');
+            }
+        });
+    </script>
+
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
