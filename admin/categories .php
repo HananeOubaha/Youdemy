@@ -30,3 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['category_name'])) {
         $error = 'Category name cannot be empty.';
     }
 }
+// Handle category deletion
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $stmt = $db->prepare("DELETE FROM categories WHERE id = :id");
+    if ($stmt->execute(['id' => $delete_id])) {
+        $success = 'Category deleted successfully!';
+    } else {
+        $error = 'Failed to delete category.';
+    }
+}
