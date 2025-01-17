@@ -104,3 +104,19 @@ $courses_by_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <i class="fas fa-users text-4xl opacity-50"></i>
                 </div>
             </div>
+
+               <!-- Most Popular Course -->
+               <div class="bg-gradient-to-r from-orange-500 to-red-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Most Popular Course</h2>
+                        <?php if ($most_popular): ?>
+                            <p class="text-lg font-medium"><?php echo htmlspecialchars($most_popular['title']); ?></p>
+                            <p class="text-gray-200"><?php echo $most_popular['enrollments']; ?> enrollments</p>
+                        <?php else: ?>
+                            <p class="text-gray-200">No enrollments yet</p>
+                        <?php endif; ?>
+                    </div>
+                    <i class="fas fa-star text-4xl opacity-50"></i>
+                </div>
+            </div>
