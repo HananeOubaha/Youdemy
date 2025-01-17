@@ -40,3 +40,7 @@ if (isset($_GET['delete_id'])) {
         $error = 'Failed to delete category.';
     }
 }
+// Get all categories
+$stmt = $db->query("SELECT * FROM categories ORDER BY name");
+$categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?> 
