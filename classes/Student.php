@@ -1,5 +1,5 @@
 <?php
-class Student extends User {
+class Student {
     private $db;
 
     public function __construct($db) {
