@@ -54,3 +54,18 @@ $stats = $admin->getStatistics();
                     <i class="fas fa-book-open text-4xl opacity-50"></i>
                 </div>
             </div>
+             <!-- Most Popular Course -->
+             <div class="bg-gradient-to-r from-green-500 to-teal-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Most Popular Course</h2>
+                        <?php if ($stats['most_popular_course']): ?>
+                            <p class="text-lg font-medium"><?php echo htmlspecialchars($stats['most_popular_course']['title']); ?></p>
+                            <p class="text-gray-200"><?php echo $stats['most_popular_course']['enrollments']; ?> enrollments</p>
+                        <?php else: ?>
+                            <p class="text-gray-200">No enrollments yet</p>
+                        <?php endif; ?>
+                    </div>
+                    <i class="fas fa-star text-4xl opacity-50"></i>
+                </div>
+            </div>
