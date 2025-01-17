@@ -94,3 +94,13 @@ $courses_by_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <i class="fas fa-book-open text-4xl opacity-50"></i>
                 </div>
             </div>
+             <!-- Total Students -->
+             <div class="bg-gradient-to-r from-green-500 to-teal-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Total Students</h2>
+                        <p class="text-3xl font-bold"><?php echo $total_students; ?></p>
+                    </div>
+                    <i class="fas fa-users text-4xl opacity-50"></i>
+                </div>
+            </div>
