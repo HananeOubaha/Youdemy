@@ -17,3 +17,13 @@ $teacher = new Teacher($db);
 $stmt = $db->prepare("SELECT COUNT(*) as total FROM courses WHERE teacher_id = :teacher_id");
 $stmt->execute(['teacher_id' => $_SESSION['user_id']]);
 $total_courses = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+
+// Get total students count across all courses
+$stmt = $db->prepare("
+    SELECT COUNT(DISTINCT e.student_id) as total 
+    FROM courses c 
+    LEFT JOIN enrollments e ON c.id = e.course_id 
+    WHERE c.teacher_id = :teacher_id
+");
+$stmt->execute(['teacher_id' => $_SESSION['user_id']]);
+$total_students = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
