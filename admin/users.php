@@ -121,3 +121,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </table>
         </div>
     </div>
+
+    <!-- JavaScript for Delete Confirmation -->
+    <script>
+        function confirmDelete(userId) {
+            if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                window.location.href = 'delete-user.php?id=' + userId;
+            }
+        }
+    </script>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html>
