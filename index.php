@@ -160,3 +160,18 @@ if ($search) {
                 </div>
             <?php endforeach; ?>
         </div>     
+         <!-- Pagination -->
+         <?php if (!$search && !$category): ?>
+            <div class="mt-8 flex justify-center">
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1; ?>" class="mx-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300">Previous</a>
+                <?php endif; ?>
+                <a href="?page=<?php echo $page + 1; ?>" class="mx-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300">Next</a>
+            </div>
+        <?php endif; ?>
+    </div>
+    <?php
+    require_once 'pages/footer.php';
+    ?>
+</body>
+</html>
