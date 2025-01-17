@@ -38,3 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+// Handle tag deletion
+if (isset($_GET['delete_id'])) {
+    $delete_id = $_GET['delete_id'];
+    $stmt = $db->prepare("DELETE FROM tags WHERE id = :id");
+    if ($stmt->execute(['id' => $delete_id])) {
+        $success = 'Tag deleted successfully!';
+    } else {
+        $error = 'Failed to delete tag.';
+    }
+}
