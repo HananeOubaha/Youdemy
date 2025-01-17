@@ -120,3 +120,33 @@ $courses_by_category = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <i class="fas fa-star text-4xl opacity-50"></i>
                 </div>
             </div>
+             <!-- Courses by Category -->
+             <div class="bg-gradient-to-r from-purple-500 to-pink-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Courses by Category</h2>
+                        <p class="text-3xl font-bold"><?php echo count($courses_by_category); ?></p>
+                    </div>
+                    <i class="fas fa-tags text-4xl opacity-50"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Courses by Category Details -->
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Courses by Category</h2>
+            <div class="space-y-4">
+                <?php foreach ($courses_by_category as $category): ?>
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-200">
+                        <span class="text-gray-700 font-medium"><?php echo htmlspecialchars($category['name']); ?></span>
+                        <span class="text-gray-600"><?php echo $category['count']; ?> courses</span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+    <?php
+    require_once '../pages/footer.php';
+    ?>
+</body>
+</html> 
