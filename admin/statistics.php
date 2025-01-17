@@ -69,3 +69,25 @@ $stats = $admin->getStatistics();
                     <i class="fas fa-star text-4xl opacity-50"></i>
                 </div>
             </div>
+
+             <!-- Courses by Category -->
+             <div class="bg-gradient-to-r from-orange-500 to-red-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Courses by Category</h2>
+                        <p class="text-3xl font-bold"><?php echo count($stats['courses_by_category']); ?></p>
+                    </div>
+                    <i class="fas fa-tags text-4xl opacity-50"></i>
+                </div>
+            </div>
+            <!-- Top Teachers -->
+            <div class="bg-gradient-to-r from-purple-500 to-pink-600 p-6 rounded-lg shadow-lg text-white transform transition-all duration-300 hover:scale-105">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-2">Top Teachers</h2>
+                        <p class="text-3xl font-bold"><?php echo count($stats['top_teachers']); ?></p>
+                    </div>
+                    <i class="fas fa-chalkboard-teacher text-4xl opacity-50"></i>
+                </div>
+            </div>
+        </div>
