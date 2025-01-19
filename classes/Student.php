@@ -1,5 +1,6 @@
 <?php
-class Student {
+require_once 'User.php';
+class Student extends User {
     private $db;
 
     public function __construct($db) {

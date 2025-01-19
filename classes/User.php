@@ -1,12 +1,12 @@
 <?php
 class User {
-    private $db;
-    private $id;
-    private $username;
-    private $email;
-    private $role;
-    private $is_active;
-    private $is_verified;
+    protected $db;
+    protected $id;
+    protected $username;
+    protected $email;
+    protected $role;
+    protected $is_active;
+    protected $is_verified;
 
     public function __construct($db) {
         $this->db = $db;
@@ -49,4 +49,3 @@ class User {
     }
 }
 ?>
-
