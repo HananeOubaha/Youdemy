@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$database = new Database();
+$database = Database::getInstance();
 $db = $database->connect();
 $course = new Course($db);
 

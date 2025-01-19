@@ -4,7 +4,7 @@ require_once '../classes/User.php';
 
 session_start();
 
-$database = new Database();
+$database = Database::getInstance();
 $db = $database->connect();
 $user = new User($db);
 

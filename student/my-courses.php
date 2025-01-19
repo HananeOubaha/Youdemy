@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     exit;
 }
 
-$database = new Database();
+$database = Database::getInstance();
 $db = $database->connect();
 $student = new Student($db);
 
