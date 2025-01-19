@@ -10,12 +10,15 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Utilisation du Singleton pour obtenir l'instance de la base de données
 $database = Database::getInstance();
-$db = $database->connect();
+$db = $database->getConnection();
+
 $course = new Course($db);
 
 $role = $_SESSION['role'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +30,7 @@ $role = $_SESSION['role'];
 </head>
 <body class="bg-gray-100">
     <!-- Navigation Bar -->
-    <nav class="bg-gradient-to-r from-indigo-800 to-purple-800  shadow-lg">
+    <nav class="bg-gradient-to-r from-indigo-800 to-purple-800 shadow-lg">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between">
                 <div class="flex space-x-7">
@@ -45,11 +48,12 @@ $role = $_SESSION['role'];
             </div>
         </div>
     </nav>
- <!-- Dashboard Content -->
- <div class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Dashboard Content -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
         <h1 class="text-4xl font-bold text-gray-800 mb-8">Welcome to Your Dashboard</h1>
 
-        <?php if($role === 'admin'): ?>
+        <?php if ($role === 'admin'): ?>
             <!-- Admin Dashboard -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -89,9 +93,9 @@ $role = $_SESSION['role'];
                 </div>
             </div>
 
-            <?php elseif($role === 'teacher'): ?>
+        <?php elseif ($role === 'teacher'): ?>
             <!-- Teacher Dashboard -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                     <div class="text-center">
                         <i class="fas fa-book text-5xl text-blue-500 mb-4"></i>
@@ -106,8 +110,16 @@ $role = $_SESSION['role'];
                         <a href="../teacher/create-course.php" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Create Course</a>
                     </div>
                 </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line text-5xl text-red-500 mb-4"></i>
+                        <h2 class="text-xl font-semibold mb-4">Course Statistics</h2>
+                        <a href="../teacher/statistics.php" class="text-blue-500 hover:text-blue-700">View Statistics →</a>
+                    </div>
+                </div>
             </div>
-            <?php else: ?>
+
+        <?php else: ?>
             <!-- Student Dashboard -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -127,6 +139,7 @@ $role = $_SESSION['role'];
             </div>
         <?php endif; ?>
     </div>
+
     <?php
     require_once '../pages/footer.php';
     ?>
