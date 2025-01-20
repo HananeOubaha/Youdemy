@@ -38,9 +38,6 @@ $courses = $student->getEnrolledCourses($_SESSION['user_id']);
                     <a href="../pages/courses.php" class="text-blue-500 hover:text-blue-700">Browse More Courses</a>
                     <span class="text-gray-400">|</span>
                     <div class="relative">
-                        <button id="categoryDropdown" class="text-blue-500 hover:text-blue-700">
-                            Filter by Category
-                        </button>
                         <div id="categoryMenu" class="hidden absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
                             <?php
                             $categories = $db->query("SELECT * FROM categories ORDER BY name")->fetchAll(PDO::FETCH_ASSOC);

@@ -65,13 +65,6 @@ $role = $_SESSION['role'];
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                     <div class="text-center">
-                        <i class="fas fa-book-open text-5xl text-green-500 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-4">Course Management</h2>
-                        <a href="../admin/courses.php" class="text-blue-500 hover:text-blue-700">Manage Courses →</a>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="text-center">
                         <i class="fas fa-tags text-5xl text-purple-500 mb-4"></i>
                         <h2 class="text-xl font-semibold mb-4">Category Management</h2>
                         <a href="../admin/categories.php" class="text-blue-500 hover:text-blue-700">Manage Categories →</a>

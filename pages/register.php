@@ -1,12 +1,14 @@
 <?php
 require_once '../config/config.php';
-require_once '../classes/User.php';
+require_once '../classes/Student.php'; // Importer la classe Student
+require_once '../classes/Teacher.php'; // Importer la classe Teacher
+require_once '../classes/Admin.php'; // Importer la classe Admin
 
 session_start();
 
+// Utilisation du Singleton pour obtenir l'instance de la base de données
 $database = Database::getInstance();
-$db = $database->connect();
-$user = new User($db);
+$db = $database->getConnection();
 
 $error = '';
 $success = '';
@@ -21,10 +23,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = 'All fields are required';
     } else {
         try {
-            if ($user->register($username, $email, $password, $role)) {
-                $success = 'Registration successful! Please login.';
-            } else {
-                $error = 'Registration failed';
+            // Créer une instance de la classe appropriée en fonction du rôle
+            switch ($role) {
+                case 'student':
+                    $user = new Student($db);
+                    break;
+                case 'teacher':
+                    $user = new Teacher($db);
+                    break;
+                case 'admin':
+                    $user = new Admin($db);
+                    break;
+                default:
+                    $error = 'Invalid role selected';
+                    break;
+            }
+
+            if (isset($user)) {
+                if ($user->register($username, $email, $password, $role)) {
+                    $success = 'Registration successful! Please login.';
+                } else {
+                    $error = 'Registration failed';
+                }
             }
         } catch (PDOException $e) {
             $error = 'Email or username already exists';
