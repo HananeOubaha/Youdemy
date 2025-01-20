@@ -1,6 +1,7 @@
 <?php
 require_once '../config/config.php';
-require_once '../classes/Course.php';
+require_once '../classes/CourseText.php';
+require_once '../classes/CourseVideo.php';
 require_once '../classes/Student.php';
 
 session_start();

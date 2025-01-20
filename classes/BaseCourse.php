@@ -1,38 +1,50 @@
 <?php
-require_once 'BaseCourse.php';
+// Classe abstraite BaseCourse (CoursDeBase)
+abstract class BaseCourse {
+    // Propriétés communes à tous les cours
+    protected $db;
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $content;
+    protected $teacher_id;
+    protected $category_id;
+    protected $created_at;
 
-// Classe concrète Course qui hérite de BaseCourse
-class Course extends BaseCourse {
-    // Constructeur pour appeler le constructeur parent
+    // Constructeur pour initialiser les propriétés communes
     public function __construct($db, $id = null, $title = null, $description = null, $content = null, $teacher_id = null, $category_id = null, $created_at = null) {
-        parent::__construct($db, $id, $title, $description, $content, $teacher_id, $category_id, $created_at);
+        $this->db = $db;
+        $this->id = $id;
+        $this->title = $title;
+        $this->description = $description;
+        $this->content = $content;
+        $this->teacher_id = $teacher_id;
+        $this->category_id = $category_id;
+        $this->created_at = $created_at;
     }
 
-    // Implémentation de la méthode create
-    public function create($title, $description, $content, $teacher_id, $category_id) {
-        $query = "INSERT INTO courses (title, description, content, teacher_id, category_id) 
-                 VALUES (:title, :description, :content, :teacher_id, :category_id)";
-        
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(":title", $title);
-        $stmt->bindParam(":description", $description);
-        $stmt->bindParam(":content", $content);
-        $stmt->bindParam(":teacher_id", $teacher_id);
-        $stmt->bindParam(":category_id", $category_id);
+    // Getters pour les propriétés communes
+    public function getId() { return $this->id; }
+    public function getTitle() { return $this->title; }
+    public function getDescription() { return $this->description; }
+    public function getContent() { return $this->content; }
+    public function getTeacherId() { return $this->teacher_id; }
+    public function getCategoryId() { return $this->category_id; }
+    public function getCreatedAt() { return $this->created_at; }
 
-        return $stmt->execute();
-    }
+    // Setters pour les propriétés communes
+    public function setTitle($title) { $this->title = $title; }
+    public function setDescription($description) { $this->description = $description; }
+    public function setContent($content) { $this->content = $content; }
+    public function setTeacherId($teacher_id) { $this->teacher_id = $teacher_id; }
+    public function setCategoryId($category_id) { $this->category_id = $category_id; }
+    public function setCreatedAt($created_at) { $this->created_at = $created_at; }
 
-    // Implémentation de la méthode displayCourseDetails
-    public function displayCourseDetails() {
-        echo "Course ID: " . $this->id . "<br>";
-        echo "Title: " . $this->title . "<br>";
-        echo "Description: " . $this->description . "<br>";
-        echo "Content: " . $this->content . "<br>";
-        echo "Teacher ID: " . $this->teacher_id . "<br>";
-        echo "Category ID: " . $this->category_id . "<br>";
-        echo "Created At: " . $this->created_at . "<br>";
-    }
+    // Méthode abstraite pour créer un cours
+    abstract public function create($title, $description, $content, $teacher_id, $category_id);
+
+    // Méthode abstraite pour afficher les détails d'un cours
+    abstract public function displayCourseDetails();
 
     // Méthode pour obtenir tous les cours
     public function getAllCourses($page = 1, $limit = 9) {

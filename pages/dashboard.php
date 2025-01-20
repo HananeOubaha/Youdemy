@@ -1,7 +1,8 @@
 <?php
 require_once '../config/config.php';
 require_once '../classes/User.php';
-require_once '../classes/Course.php';
+require_once '../classes/CourseText.php';
+require_once '../classes/CourseVideo.php';
 
 session_start();
 
@@ -14,7 +15,8 @@ if (!isset($_SESSION['user_id'])) {
 $database = Database::getInstance();
 $db = $database->getConnection();
 
-$course = new Course($db);
+$course = new CourseText($db);
+$course = new CourseVideo($db);
 
 $role = $_SESSION['role'];
 ?>

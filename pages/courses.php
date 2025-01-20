@@ -1,12 +1,14 @@
 <?php
 require_once '../config/config.php';
-require_once '../classes/Course.php';
+require_once '../classes/CourseText.php';
+require_once '../classes/CourseVideo.php';
 
 session_start();
 
 $database = Database::getInstance();
 $db = $database->connect();
-$course = new Course($db);
+$course = new CourseText($db);
+$course = new CourseVideo($db);
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $category = isset($_GET['category']) ? (int)$_GET['category'] : null;
