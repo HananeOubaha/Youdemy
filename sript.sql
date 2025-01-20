@@ -25,6 +25,7 @@ CREATE TABLE courses (
     description TEXT,
     content TEXT,
     content_type ENUM('video', 'text') NOT NULL, -- Indique le type de contenu
+    status ENUM('pending', 'active', 'suspended') DEFAULT 'pending',
     teacher_id INT,
     category_id INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

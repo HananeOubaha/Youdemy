@@ -4,6 +4,7 @@ require_once 'BaseCourse.php';
 class CourseText extends BaseCourse {
     // Propriété spécifique aux cours texte
     protected $text_content;
+    protected $content_type = 'text';
 
     // Constructeur pour initialiser les propriétés communes et spécifiques
     public function __construct($db, $id = null, $title = null, $description = null, $content = null, $teacher_id = null, $category_id = null, $created_at = null, $text_content = null) {

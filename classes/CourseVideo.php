@@ -4,7 +4,8 @@ require_once 'BaseCourse.php';
 class CourseVideo extends BaseCourse {
     // Propriété spécifique aux cours vidéo
     protected $video_url;
-
+    protected $content_type = 'video';
+    
     // Constructeur pour initialiser les propriétés communes et spécifiques
     public function __construct($db, $id = null, $title = null, $description = null, $content = null, $teacher_id = null, $category_id = null, $created_at = null, $video_url = null) {
         parent::__construct($db, $id, $title, $description, $content, $teacher_id, $category_id, $created_at);

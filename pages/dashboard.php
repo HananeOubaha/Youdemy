@@ -56,38 +56,45 @@ $role = $_SESSION['role'];
         <h1 class="text-4xl font-bold text-gray-800 mb-8">Welcome to Your Dashboard</h1>
 
         <?php if ($role === 'admin'): ?>
-            <!-- Admin Dashboard -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="text-center">
-                        <i class="fas fa-users text-5xl text-blue-500 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-4">User Management</h2>
-                        <a href="../admin/users.php" class="text-blue-500 hover:text-blue-700">Manage Users →</a>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="text-center">
-                        <i class="fas fa-tags text-5xl text-purple-500 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-4">Category Management</h2>
-                        <a href="../admin/categories.php" class="text-blue-500 hover:text-blue-700">Manage Categories →</a>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="text-center">
-                        <i class="fas fa-tag text-5xl text-yellow-500 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-4">Tags Management</h2>
-                        <a href="../admin/tags.php" class="text-blue-500 hover:text-blue-700">Manage Tags →</a>
-                    </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                    <div class="text-center">
-                        <i class="fas fa-chart-line text-5xl text-red-500 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-4">Statistics Management</h2>
-                        <a href="../admin/statistics.php" class="text-blue-500 hover:text-blue-700">View Statistics →</a>
-                    </div>
-                </div>
+    <!-- Admin Dashboard -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center">
+                <i class="fas fa-users text-5xl text-blue-500 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-4">User Management</h2>
+                <a href="../admin/users.php" class="text-blue-500 hover:text-blue-700">Manage Users →</a>
             </div>
-
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center">
+                <i class="fas fa-tags text-5xl text-purple-500 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-4">Category Management</h2>
+                <a href="../admin/categories.php" class="text-blue-500 hover:text-blue-700">Manage Categories →</a>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center">
+                <i class="fas fa-tag text-5xl text-yellow-500 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-4">Tags Management</h2>
+                <a href="../admin/tags.php" class="text-blue-500 hover:text-blue-700">Manage Tags →</a>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center">
+                <i class="fas fa-chart-line text-5xl text-red-500 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-4">Statistics Management</h2>
+                <a href="../admin/statistics.php" class="text-blue-500 hover:text-blue-700">View Statistics →</a>
+            </div>
+        </div>
+        <!-- New Courses Management Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="text-center">
+                <i class="fas fa-book text-5xl text-green-500 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-4">Courses Management</h2>
+                <a href="../admin/valider-cours.php" class="text-blue-500 hover:text-blue-700">Validate Courses →</a>
+            </div>
+        </div>
+    </div>
         <?php elseif ($role === 'teacher'): ?>
             <!-- Teacher Dashboard -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
