@@ -151,7 +151,7 @@ if ($search) {
                                 <i class="fas fa-user-tie text-blue-600 mr-2"></i>
                                 <span class="text-sm text-gray-500">By <?php echo htmlspecialchars($course['teacher_name']); ?></span>
                             </div>
-                            <a href="pages/course.php?id=<?php echo $course['id']; ?>" 
+                            <a href="<?php echo isset($_SESSION['user_id']) ? 'pages/course.php?id=' . $course['id'] : 'pages/login.php?redirect=course'; ?>" 
                                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
                                 View Course
                             </a>
